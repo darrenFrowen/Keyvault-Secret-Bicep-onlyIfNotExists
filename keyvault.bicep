@@ -16,8 +16,8 @@ resource keyvaultExisting 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
 @description('Generate a new GUID for each deployment - cannot be guessed')
 param secretValue string = newGuid()
 
-@description('Secret name indicating the fixed date and time when originally deployed')
-param secretName string = 'vmPasswordSecret'
+@description('The keyvault secret name to be created')
+param secretName string = 'myKeyVaultSecret'
 
 @onlyIfNotExists()
 @description('Create a secret in the Key Vault only if it does not exist')

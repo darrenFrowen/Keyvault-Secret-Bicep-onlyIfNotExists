@@ -81,7 +81,7 @@ resource keyvaultExisting 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
 param secretValue string = newGuid()
 
 @description('Secret name indicating the fixed date and time when originally deployed')
-param secretName string = 'vmPasswordSecret'
+param secretName string = 'myKeyVaultSecretName'
 
 @onlyIfNotExists()
 @description('Create a secret in the Key Vault only if it does not exist')
@@ -116,7 +116,7 @@ resource secret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
      - Ensures the secret value is unpredictable and unique
    - **`secretName`**:
      - Defines the name of the secret to be created
-     - Defaults to `'vmPasswordSecret'`
+     - Defaults to `'myKeyVaultSecretName'`
 
 4. **The Key Feature - `@onlyIfNotExists()` Decorator**:
    - **Purpose**: Ensures the secret is only created if it doesn't already exist
@@ -191,8 +191,8 @@ Before deploying, update the following placeholders in the files:
 1. **In `keyvault.ps1`**:
 
    ```powershell
-   Connect-AzAccount -TenantId 'YOUR_TENANT_ID' -SubscriptionId 'YOUR_SUBSCRIPTION_ID'
-   $ResourceGroupName = "YOUR_RESOURCE_GROUP_NAME"
+   Connect-AzAccount -TenantId 'tenantId' -SubscriptionId 'subscriptionId'
+   $ResourceGroupName = "resourcGroupName"
    ```
 
 2. **In `keyvault.bicep`**:
@@ -201,13 +201,13 @@ Before deploying, update the following placeholders in the files:
    # Update the Key Vault name to be unique
    module keyvault 'br/public:avm/res/key-vault/vault:0.13.0' = {
      params: {
-       name: 'YOUR_UNIQUE_KEYVAULT_NAME'
+       name: 'keyvaultName'
      }
    }
    
    # Ensure this matches the name above
    resource keyvaultExisting 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
-       name: 'YOUR_UNIQUE_KEYVAULT_NAME'
+       name: 'keyvaultName'
    }
    ```
 
