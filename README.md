@@ -107,7 +107,6 @@ resource secret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
 2. **Existing Resource Reference (`keyvaultExisting`)**:
    - References an existing Key Vault to use as the parent for the secret
    - Uses the `existing` keyword to indicate this resource already exists
-   - **Note**: There's a naming inconsistency here (`keyvaultName` vs `keyVaultName`) that should be aligned
 
 3. **Parameters**:
    - **`secretValue`**:
