@@ -224,12 +224,12 @@ Run the PowerShell script:
 1. **First Deployment**:
    - Key Vault is created
    - Secret is created with a new GUID value
-   - Note the secret value from deployment output
+   - Note the secret value from the portal
 
 2. **Second Deployment**:
    - Key Vault already exists (no changes)
    - Secret creation is skipped due to `@onlyIfNotExists()`
-   - Original secret value is preserved
+   - Original secret value is preserved, check in portal
 
 ## 📚 Key Benefits of `@onlyIfNotExists()`
 
@@ -237,25 +237,12 @@ Run the PowerShell script:
 
 - Multiple deployments don't overwrite existing resources
 - Safe to run deployment scripts repeatedly
-- Reduces risk of data loss
 
 ### 2. **Security**
 
 - Prevents accidental regeneration of sensitive values
 - Maintains secret integrity across deployments
-- Follows principle of least privilege
-
-### 3. **Operational Safety**
-
-- Eliminates "configuration drift" concerns
-- Enables CI/CD pipeline safety
-- Reduces manual intervention requirements
-
-### 4. **Cost Optimization**
-
-- Avoids unnecessary resource recreation
-- Reduces deployment time for existing resources
-- Minimizes Azure resource manager API calls
+- Secret value cannot be guessed using unique new GUID value
 
 ## 🔍 Use Cases and Best Practices
 
@@ -300,11 +287,11 @@ Run the PowerShell script:
 
 ## 📖 References and Documentation
 
-- [Official Bicep Configuration Documentation](https://learn.microsoft.com/en-gb/azure/azure-resource-manager/bicep/bicep-config)
+- [Azure Verified Modules](https://aka.ms/avm)
+- [Azure Verified Module Azure Key Vault](https://github.com/Azure/bicep-registry-modules/blob/main/avm/res/key-vault/vault/README.md)
 - [GitHub PR: Add onlyIfNotExistsDecorator](https://github.com/Azure/bicep/pull/16655)
 - [Bicep Experimental Features](https://aka.ms/bicep/experimental-features)
-- [Azure Key Vault Bicep Reference](https://learn.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults)
-- [Azure Verified Modules](https://aka.ms/avm)
+
 
 ## 🤝 Contributing
 
